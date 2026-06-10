@@ -210,15 +210,15 @@ nav .wrap {
 }
 .cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
 }
 
 /* perspective 무대 */
 .ux-parent {
     perspective: 1000px;
     perspective-origin: 50% 50%;
-    height: 340px;
+    height: 300px;
 }
 
 /* 기울어지는 카드 본체 */
@@ -298,7 +298,7 @@ nav .wrap {
 .ux-content {
     position: relative;
     z-index: 3;
-    padding: 72px 40px 0 32px;
+    padding: 60px 28px 0 28px;
     transform: translate3d(0, 0, 30px);
 }
 .ux-num {
@@ -307,25 +307,25 @@ nav .wrap {
 }
 .ux-title {
     display: block;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     margin: 6px 0 10px;
     color: var(--ink);
 }
 .ux-text {
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--sub);
     line-height: 1.5;
-    max-width: 60%;
+    max-width: 75%;
 }
 
 /* 하단 바 */
 .ux-bottom {
     position: absolute;
-    left: 32px;
-    right: 32px;
-    bottom: 28px;
+    left: 28px;
+    right: 28px;
+    bottom: 24px;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -393,6 +393,11 @@ footer {
 }
 
 /* ===== 반응형 ===== */
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    } /* 태블릿: 2열 */
+}
 @media (max-width: 768px) {
     :root {
         --pad: 24px;
@@ -418,9 +423,9 @@ footer {
     .cards {
         grid-template-columns: 1fr;
         gap: 32px;
-    }
+    } /* 모바일: 1열 */
     .ux-parent {
-        height: 320px;
+        height: 300px;
     }
 }
 @media (prefers-reduced-motion: reduce) {
