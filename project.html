@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project — LEE JI YEON</title>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/projects-data.js"></script>
+        <script src="js/project.js"></script>
+    </head>
+    <body>
+        <!-- ===== NAV (메인과 동일) ===== -->
+        <nav>
+            <div class="wrap">
+                <a href="index.html" class="logo">PORTFOLIO</a>
+                <div class="menu">
+                    <a href="index.html#about">About</a><a href="index.html#skills">Skills</a>
+                    <a href="index.html#projects">Projects</a><a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+        <!-- 내용은 project.js가 데이터에서 읽어 채웁니다. id는 data-* 로 표시 -->
+        <article class="detail">
+            <div class="wrap">
+                <!-- 뒤로가기 -->
+                <a href="index.html#projects" class="back-link">← Projects</a>
+                <!-- 헤더: 번호 / 제목 / 한 줄 요약 -->
+                <header class="detail-head">
+                    <p class="detail-num" data-field="num">PROJECT 01</p>
+                    <h1 data-field="title">Project Title</h1>
+                    <p class="detail-summary" data-field="summary">한 줄 요약</p>
+                </header>
+                <!-- 영상 -->
+                <div class="detail-video" data-video-wrap>
+                    <iframe
+                        data-field="video"
+                        src=""
+                        title="project video"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <!-- Overview: 역할 / 툴 / 기간 -->
+                <section class="detail-overview">
+                    <div class="ov-item"><span class="ov-label">ROLE</span><span data-field="role">—</span></div>
+                    <div class="ov-item"><span class="ov-label">TOOLS</span><span data-field="tools">—</span></div>
+                    <div class="ov-item"><span class="ov-label">PERIOD</span><span data-field="period">—</span></div>
+                    <div class="ov-item">
+                        <span class="ov-label">CATEGORY</span><span data-field="category">—</span>
+                    </div>
+                </section>
+                <!-- 6단계 (네 기획서 흐름) -->
+                <section class="detail-block">
+                    <p class="block-label">BACKGROUND</p>
+                    <h2>프로젝트 배경</h2>
+                    <p data-field="background">—</p>
+                </section>
+                <section class="detail-block">
+                    <p class="block-label">PROBLEM</p>
+                    <h2>핵심 문제</h2>
+                    <p data-field="problem">—</p>
+                </section>
+                <section class="detail-block">
+                    <p class="block-label">STRATEGY</p>
+                    <h2>해결 전략</h2>
+                    <p data-field="strategy">—</p>
+                </section>
+                <section class="detail-block">
+                    <p class="block-label">PROCESS</p>
+                    <h2>디자인 과정</h2>
+                    <p data-field="process">—</p>
+                </section>
+                <!-- 결과물 이미지 (있을 때만 표시) -->
+                <section class="detail-gallery" data-gallery hidden></section>
+                <section class="detail-block">
+                    <p class="block-label">RESULT</p>
+                    <h2>결과물</h2>
+                    <p data-field="result">—</p>
+                </section>
+                <section class="detail-block">
+                    <p class="block-label">REFLECTION</p>
+                    <h2>배운 점</h2>
+                    <p data-field="reflection">—</p>
+                </section>
+                <!-- 다음 프로젝트로 -->
+                <a href="index.html#projects" class="back-link bottom">← 목록으로 돌아가기</a>
+            </div>
+        </article>
+        <footer><div class="wrap">© 2026 LEE JI YEON</div></footer>
+    </body>
+</html>
