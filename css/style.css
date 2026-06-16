@@ -1,13 +1,35 @@
-/* ===== 공통 토큰 (아이보리 톤) ===== */
+/* ===== 공통 토큰 (Golden Oat Latte 팔레트) ===== */
 :root {
-    --bg: #f4f2ee;
-    --card: #edebe7;
-    --card-grad: linear-gradient(135deg, #edebe7 0%, #e2ded6 100%);
-    --ink: #111111;
-    --sub: #888888;
-    --line: #ddd9d2;
-    --orbit: rgba(0, 0, 0, 0.045);
-    --pad: 80px;
+    /* 팔레트 */
+    --cream: #f7f5f1; /* 연한 베이지 (섹션 배경) */
+    --beige: #e2d2b9; /* 베이지 (원 윤곽선 등) */
+    --tan: #c7a87a;
+    --camel: #a98556;
+    --brown: #7c6041; /* 소제목·본문 글자 */
+    --coffee: #4c3a24; /* 브랜드 / 포인트·제목 글자 */
+    --white: #ffffff;
+
+    /* 역할별 색 */
+    --bg: #f7f5f1; /* 기본 배경 */
+    --ink: #4c3a24; /* 진한 글자(제목·포인트) */
+    --sub: #7c6041; /* 본문·소제목 */
+    --note: #b8ac9e; /* 참고사항(연한 회갈색) */
+    --line: #e2d2b9; /* 구분선·테두리 */
+    --card: #fbfaf7; /* 카드 베이스 (밝게) */
+    --card-grad: linear-gradient(135deg, #ffffff 0%, #f4f1eb 100%);
+    --orbit: rgba(76, 58, 36, 0.05);
+
+    /* 레이아웃: 1000px 컨테이너 */
+    --maxw: 1000px;
+    --pad: 40px; /* 양옆 여백 */
+
+    /* 타이포 크기 */
+    --fs-point: 100px; /* 포인트(이름) */
+    --fs-title: 32px; /* 제목 */
+    --fs-sub: 26px; /* 소제목 */
+    --fs-body: 18px; /* 본문 */
+    --fs-note: 16px; /* 참고사항 */
+    --fs-menu: 18px; /* 메뉴바 */
 }
 * {
     margin: 0;
@@ -17,29 +39,55 @@
 body {
     font-family: "Pretendard", sans-serif;
     background: var(--bg);
-    color: var(--ink);
+    color: var(--sub);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-}
-html {
-    scroll-behavior: smooth;
 }
 a {
     color: inherit;
     text-decoration: none;
 }
+
+/* 1000px 컨테이너 (양옆 여백 포함) */
 .wrap {
-    max-width: 1440px;
+    max-width: var(--maxw);
     margin: 0 auto;
     padding: 0 var(--pad);
 }
+
+/* 섹션 세로 간격 (이전 160px → 줄임) */
 section {
-    padding: 160px 0;
+    padding: 110px 0;
 }
+
+/* 섹션 배경 교차: 베이지 → 흰색 → 베이지 ... */
+.hero {
+    background: var(--cream);
+}
+#about {
+    background: var(--white);
+}
+#skills {
+    background: var(--cream);
+}
+#story {
+    background: var(--white);
+}
+#projects {
+    background: var(--cream);
+}
+#contact {
+    background: var(--white);
+}
+footer {
+    background: var(--cream);
+}
+
+/* 라벨(소제목 위 작은 글자) */
 .label {
-    font-size: 16px;
+    font-size: var(--fs-note);
     letter-spacing: 0.1em;
-    color: var(--sub);
+    color: var(--note);
     margin-bottom: 24px;
 }
 
@@ -48,8 +96,9 @@ nav {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--bg);
-}
+    background: var(--cream);
+    box-shadow: 0 2px 12px -6px rgba(76, 58, 36, 0.25);
+} /* 그림자 살짝 */
 nav .wrap {
     display: flex;
     justify-content: space-between;
@@ -59,34 +108,45 @@ nav .wrap {
 .logo {
     font-weight: 700;
     letter-spacing: 0.05em;
+    font-size: var(--fs-menu);
+    color: var(--ink);
 }
 .menu {
     display: flex;
     gap: 32px;
-    font-size: 14px;
+    font-size: var(--fs-menu);
 }
 .menu a:hover {
-    color: var(--sub);
+    color: var(--camel);
 }
 
-/* ===== 1. MAIN VISUAL ===== */
+/* ===== 01. MAIN VISUAL ===== */
 .hero {
-    padding-top: 80px;
+    padding-top: 90px;
+    overflow: hidden;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 40px;
+    align-items: center;
+    min-height: 560px;
 }
 .hero .eyebrow {
-    font-size: 14px;
+    font-size: var(--fs-note);
     letter-spacing: 0.15em;
-    color: var(--sub);
+    color: var(--note);
     margin-bottom: 24px;
 }
 .hero h1 {
-    font-size: clamp(48px, 9vw, 120px);
+    font-size: clamp(56px, 11vw, 100px);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -0.02em;
+    color: var(--ink);
 }
 .hero .intro {
-    font-size: 18px;
+    font-size: var(--fs-body);
     color: var(--sub);
     margin: 32px 0 48px;
 }
@@ -102,20 +162,228 @@ nav .wrap {
     border: 1px solid var(--ink);
     border-radius: 40px;
     font-size: 15px;
+    color: var(--ink);
     transition: 0.25s;
 }
 .btn:hover {
     background: var(--ink);
-    color: var(--bg);
-}
-.scroll {
-    margin-top: 120px;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    color: var(--sub);
+    color: var(--cream);
 }
 
-/* ===== 2. ABOUT ===== */
+/* ===== 오브젝트 무대 ===== */
+.hero-stage {
+    position: relative;
+    width: 100%;
+    height: 560px;
+}
+
+/* 궤도선 */
+.orbit-line {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: orbit-rotate 60s linear infinite;
+    transform-origin: center;
+}
+@keyframes orbit-rotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 공통 오브젝트 */
+.obj {
+    position: absolute;
+}
+.obj img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+/* 그림자: 오브젝트 아래 바닥에 (고정, 스케일·투명도만 변함) */
+.obj-shadow {
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(76, 58, 36, 0.28), transparent 70%);
+    z-index: 1;
+}
+
+/* 각 오브젝트 위치·크기 (1번 레퍼런스 배치) — img만 둥둥 */
+.obj-phone {
+    width: 200px;
+    top: 24%;
+    left: 34%;
+}
+.obj-translation {
+    width: 92px;
+    top: 8%;
+    left: 60%;
+}
+.obj-vegebox {
+    width: 150px;
+    top: 40%;
+    right: 2%;
+}
+.obj-forest {
+    width: 120px;
+    top: 54%;
+    left: 40%;
+}
+.obj-bluesphere {
+    width: 120px;
+    top: 42%;
+    left: 8%;
+}
+.obj-ginkgo {
+    width: 110px;
+    top: 14%;
+    right: 8%;
+}
+.obj-glass {
+    width: 64px;
+    top: 30%;
+    right: 18%;
+}
+
+.obj-phone img {
+    animation: float-a 5.5s ease-in-out infinite;
+}
+.obj-translation img {
+    animation: float-b 4.8s ease-in-out infinite;
+}
+.obj-vegebox img {
+    animation: float-c 6s ease-in-out infinite;
+}
+.obj-forest img {
+    animation: float-b 5.2s ease-in-out infinite;
+}
+.obj-bluesphere img {
+    animation: float-c 5.8s ease-in-out infinite;
+}
+.obj-ginkgo img {
+    animation: float-a 6.4s ease-in-out infinite;
+}
+.obj-glass img {
+    animation: float-b 4.5s ease-in-out infinite;
+}
+
+/* 둥둥 뜨는 애니메이션 3종 (랜덤 느낌) */
+@keyframes float-a {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-16px);
+    }
+}
+@keyframes float-b {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+@keyframes float-c {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+/* 그림자: 오브젝트가 뜨면(중간) 옅고 작게, 내려오면 짙고 크게 */
+.obj-phone .obj-shadow {
+    animation: shadow-a 5.5s ease-in-out infinite;
+}
+.obj-translation .obj-shadow {
+    animation: shadow-b 4.8s ease-in-out infinite;
+}
+.obj-vegebox .obj-shadow {
+    animation: shadow-c 6s ease-in-out infinite;
+}
+.obj-forest .obj-shadow {
+    animation: shadow-b 5.2s ease-in-out infinite;
+}
+.obj-bluesphere .obj-shadow {
+    animation: shadow-c 5.8s ease-in-out infinite;
+}
+.obj-ginkgo .obj-shadow {
+    animation: shadow-a 6.4s ease-in-out infinite;
+}
+.obj-glass .obj-shadow {
+    animation: shadow-b 4.5s ease-in-out infinite;
+}
+@keyframes shadow-a {
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(0.82);
+    }
+}
+@keyframes shadow-b {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(0.85);
+    }
+}
+@keyframes shadow-c {
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.28;
+        transform: translateX(-50%) scale(0.8);
+    }
+}
+
+/* SCROLL: 위에 짧은 선 + 글자, 중앙 정렬 */
+.scroll {
+    margin: 40px auto 0;
+    font-size: var(--fs-note);
+    letter-spacing: 0.1em;
+    color: var(--note);
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+.scroll::before {
+    content: "";
+    width: 1px;
+    height: 20px;
+    background: var(--note);
+    display: block;
+}
+
+/* ===== 02. ABOUT ===== */
 .about-grid {
     display: grid;
     grid-template-columns: 6fr 5fr;
@@ -123,13 +391,14 @@ nav .wrap {
     align-items: center;
 }
 .about h2 {
-    font-size: clamp(28px, 4vw, 46px);
+    font-size: var(--fs-title);
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.35;
     margin-bottom: 32px;
+    color: var(--ink);
 }
 .about p {
-    font-size: 16px;
+    font-size: var(--fs-body);
     color: var(--sub);
     margin-bottom: 20px;
 }
@@ -140,28 +409,30 @@ nav .wrap {
     margin-top: 32px;
 }
 .tag {
-    font-size: 12px;
+    font-size: 14px;
     padding: 8px 16px;
     border: 1px solid var(--line);
     border-radius: 30px;
+    color: var(--sub);
 }
 .about-img {
     aspect-ratio: 4/5;
     max-height: 520px;
-    background: var(--card);
+    background: var(--cream);
     border-radius: 8px;
 }
 
-/* ===== 3. SKILLS ===== */
+/* ===== 03. SKILLS ===== */
 .skills-grid {
     display: grid;
-    grid-template-columns: 5.5fr 6fr;
+    grid-template-columns: 6fr 5fr;
     gap: 48px;
     align-items: start;
 }
 .skill-item {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     gap: 24px;
     padding: 24px 0;
     border-top: 1px solid var(--line);
@@ -174,26 +445,27 @@ nav .wrap {
     border-bottom: 1px solid var(--line);
 }
 .skill-item h3 {
-    font-size: 18px;
+    font-size: var(--fs-sub);
     font-weight: 700;
-    min-width: 160px;
-}
-.skill-item span {
-    font-size: 14px;
     color: var(--sub);
+    white-space: nowrap;
+} /* 제목 항상 한 줄 */
+.skill-item span {
+    font-size: var(--fs-note);
+    color: var(--note);
     text-align: right;
 }
 .tools-title {
-    font-size: 13px;
+    font-size: var(--fs-note);
     letter-spacing: 0.12em;
-    color: var(--sub);
+    color: var(--note);
     margin-bottom: 24px;
 }
 .tools {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    max-width: 560px;
+    gap: 16px;
+    max-width: 340px;
 }
 .tool {
     aspect-ratio: 1;
@@ -211,24 +483,30 @@ nav .wrap {
     transform: translateY(-6px);
 }
 
-/* ===== 4. PROJECTS — 3D 깊이 호버 ===== */
+/* ===== 05. PROJECTS — Swiper 슬라이드 (가로형 카드) ===== */
 .projects h2 {
     font-size: clamp(40px, 7vw, 90px);
     font-weight: 800;
     letter-spacing: -0.02em;
-    margin-bottom: 64px;
-}
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    margin-bottom: 48px;
+    color: var(--ink);
 }
 
-/* perspective 무대 */
+/* Swiper 무대 — 카드는 1000px 꽉, 화살표는 바깥으로 */
+.projects-swiper {
+    position: relative;
+    padding: 20px 0 60px;
+}
+.projects-swiper .swiper-slide {
+    height: auto;
+}
+
+/* perspective 무대 — 카드 가로로 길게 */
 .ux-parent {
-    perspective: 1000px;
+    perspective: 1200px;
     perspective-origin: 50% 50%;
     height: 300px;
+    width: 100%;
 }
 
 /* 기울어지는 카드 본체 */
@@ -262,7 +540,23 @@ nav .wrap {
     z-index: 1;
 }
 
-/* 동심원 2개 */
+/* 프로젝트 이미지 — 오른쪽에 깔리고 왼쪽 경계가 흐리게 페이드 */
+.ux-img {
+    position: absolute;
+    inset: 8px;
+    border-radius: 28px;
+    background-size: cover;
+    background-position: center;
+    transform: translate3d(0, 0, 26px); /* 유리판 바로 위 */
+    pointer-events: none;
+    z-index: 1;
+    /* 왼쪽은 투명 → 오른쪽으로 갈수록 불투명 (텍스트 영역과 자연스럽게 섞임) */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 30%, rgba(0, 0, 0, 0.6) 52%, #000 75%);
+    mask-image: linear-gradient(90deg, transparent 0%, transparent 30%, rgba(0, 0, 0, 0.6) 52%, #000 75%);
+    transition: 0.5s ease;
+}
+
+/* 원 1개 — 크게 + 입체감, 번호 중앙 */
 .ux-logo {
     position: absolute;
     right: 0;
@@ -273,69 +567,60 @@ nav .wrap {
 }
 .ux-circle {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
+    width: 72px;
     border-radius: 50%;
     aspect-ratio: 1;
-    background: var(--orbit);
-    transition: 0.5s ease;
-}
-.ux-circle:nth-child(1) {
-    width: 96px;
-    top: 18px;
-    right: 18px;
-    transform: translate3d(0, 0, 30px);
-}
-.ux-circle:nth-child(2) {
-    width: 48px;
-    top: 30px;
-    right: 30px;
-    transform: translate3d(0, 0, 50px);
+    background: rgba(247, 245, 241, 0.5);
+    box-shadow: 0 12px 24px -10px rgba(76, 58, 36, 0.4);
     display: grid;
     place-content: center;
-    transition-delay: 0.06s;
+    transform: translate3d(0, 0, 40px);
+    transition: 0.5s ease;
 }
-.ux-circle:nth-child(2) span {
-    font-size: 13px;
+.ux-circle span {
+    font-size: 16px;
     font-weight: 800;
     color: var(--ink);
 }
-.ux-parent:hover .ux-circle:nth-child(2) {
-    transform: translate3d(0, 0, 65px);
+.ux-parent:hover .ux-circle {
+    transform: translate3d(0, 0, 70px);
+    box-shadow: 0 24px 40px -12px rgba(76, 58, 36, 0.45);
 }
 
-/* 텍스트 */
+/* 텍스트 (가로형이라 왼쪽에 여유있게) */
 .ux-content {
     position: relative;
     z-index: 3;
-    padding: 60px 28px 0 28px;
+    padding: 48px 0 0 40px;
     transform: translate3d(0, 0, 30px);
 }
 .ux-num {
     font-size: 13px;
-    color: var(--sub);
+    color: var(--note);
 }
 .ux-title {
     display: block;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 800;
-    margin: 6px 0 10px;
+    margin: 8px 0 12px;
     color: var(--ink);
 }
 .ux-text {
     display: block;
-    font-size: 13px;
+    font-size: 15px;
     color: var(--sub);
-    line-height: 1.5;
-    max-width: 75%;
+    line-height: 1.6;
+    max-width: 55%;
 }
 
 /* 하단 바 */
 .ux-bottom {
     position: absolute;
-    left: 28px;
-    right: 28px;
-    bottom: 24px;
+    left: 40px;
+    right: 40px;
+    bottom: 32px;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -350,10 +635,10 @@ nav .wrap {
 .ux-chip {
     font-size: 11px;
     padding: 6px 12px;
-    background: #fff;
+    background: var(--white);
     border-radius: 30px;
     color: var(--sub);
-    box-shadow: 0 6px 10px -6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px -6px rgba(76, 58, 36, 0.2);
 }
 .ux-open {
     display: flex;
@@ -372,17 +657,19 @@ nav .wrap {
     stroke-width: 2.5;
 }
 
-/* ===== 5. CONTACT ===== */
+/* ===== 06. CONTACT ===== */
 .contact h2 {
-    font-size: clamp(36px, 6vw, 72px);
+    font-size: clamp(32px, 6vw, 56px);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.2;
     margin-bottom: 40px;
+    color: var(--ink);
 }
 .email {
     font-size: 24px;
     display: inline-flex;
     gap: 8px;
+    color: var(--ink);
     border-bottom: 1px solid var(--ink);
     padding-bottom: 4px;
 }
@@ -390,15 +677,15 @@ nav .wrap {
     display: flex;
     gap: 24px;
     margin-top: 40px;
-    font-size: 15px;
+    font-size: var(--fs-body);
 }
 .sns a:hover {
-    color: var(--sub);
+    color: var(--camel);
 }
 footer {
     padding: 40px 0;
-    font-size: 13px;
-    color: var(--sub);
+    font-size: var(--fs-note);
+    color: var(--note);
     border-top: 1px solid var(--line);
 }
 
@@ -413,10 +700,18 @@ footer {
         --pad: 24px;
     }
     section {
-        padding: 80px 0;
+        padding: 70px 0;
     }
     .menu {
         display: none;
+    }
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        min-height: auto;
+    } /* 모바일: 텍스트 위 / 무대 아래 */
+    .hero-stage {
+        height: 380px;
     }
     .about-grid,
     .skills-grid {
@@ -426,16 +721,28 @@ footer {
     .skill-item {
         flex-direction: column;
         gap: 6px;
+        align-items: flex-start;
     }
     .skill-item span {
         text-align: left;
     }
     .cards {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 24px;
     } /* 모바일: 1열 */
     .ux-parent {
-        height: 300px;
+        height: 400px;
+    }
+    .sec-head {
+        position: static;
+    } /* 모바일은 sticky 해제 */
+}
+/* 모션 최소화 설정 시 둥둥 애니메이션 정지 */
+@media (prefers-reduced-motion: reduce) {
+    .obj img,
+    .obj-shadow,
+    .orbit-line {
+        animation: none !important;
     }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -681,7 +988,7 @@ footer {
     }
 }
 
-/* ===== STORYTELLING STRUCTURE ===== */
+/* ===== 04. STORYTELLING STRUCTURE ===== */
 .story-steps {
     display: flex;
     align-items: stretch;
@@ -710,7 +1017,7 @@ footer {
 .line-ico {
     width: 40px;
     height: 40px;
-    color: #999; /* 아이콘 색은 여기서 조절 */
+    color: var(--camel); /* 아이콘 색 */
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -718,9 +1025,10 @@ footer {
     stroke-linejoin: round;
 }
 .story-card h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
+    color: var(--ink);
 }
 .story-card p {
     font-size: 14px;
@@ -730,7 +1038,7 @@ footer {
 .story-arrow {
     display: flex;
     align-items: center;
-    color: var(--sub);
+    color: var(--note);
     font-size: 18px;
 }
 
@@ -745,56 +1053,79 @@ footer {
     }
 }
 
-/* ===== 고정 섹션 인디케이터 (좌상단 sticky) ===== */
-.nav-indicator {
-    position: fixed;
-    top: 96px; /* 메뉴(72px) 아래 */
-    left: var(--pad); /* 본문 좌측 여백과 맞춤 */
-    z-index: 40;
-    pointer-events: none; /* 본문 클릭 방해 안 함 (원만 클릭 가능하게 아래서 복구) */
+/* ===== 섹션 인디케이터 (각 섹션 소제목 자리) ===== */
+/* 각 섹션 안에 들어가는 라벨+원 묶음 */
+.sec-head {
+    position: static; /* 걸리는 효과 제거 — 그냥 제자리 */
+    margin-bottom: 48px;
 }
-.ni-label {
-    font-size: 16px;
+.sec-label {
+    font-size: var(--fs-note);
     letter-spacing: 0.1em;
-    color: var(--sub);
+    color: var(--note);
     margin-bottom: 14px;
-    transition: opacity 0.3s ease; /* 글자 교체 시 페이드 */
+    transition: opacity 0.4s ease;
     white-space: nowrap;
 }
-.ni-dots {
+.sec-dots {
     display: flex;
     gap: 10px;
-    pointer-events: auto;
-} /* 원은 클릭 가능 */
-.ni-dot {
+}
+.sec-dot {
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    border: 1.2px solid var(--ink);
+    border: 1.5px solid var(--beige); /* 원 윤곽선 #e2d2b9 */
     background: transparent;
     cursor: pointer;
     transition:
         background 0.45s ease,
-        transform 0.45s ease; /* 스르륵 채워짐 */
+        transform 0.45s ease;
 }
-.ni-dot.active {
-    background: var(--ink);
+.sec-dot.active {
+    background: var(--beige);
     transform: scale(1.05);
 }
 
-/* 본문 왼쪽에 라벨 공간 확보 (라벨이 본문 위에 떠 있으므로) */
-@media (min-width: 1025px) {
-    .wrap {
-        padding-left: calc(var(--pad) + 220px);
-    } /* 라벨 폭만큼 본문을 오른쪽으로 */
-    nav .wrap {
-        padding-left: var(--pad);
-    } /* 메뉴는 원래 위치 */
+/* ===== Swiper UI (화살표·페이지네이션) ===== */
+.projects-swiper .swiper-button-prev,
+.projects-swiper .swiper-button-next {
+    color: var(--coffee);
+    width: 44px;
+    height: 44px;
+}
+.projects-swiper .swiper-button-prev:after,
+.projects-swiper .swiper-button-next:after {
+    font-size: 28px;
+    font-weight: 700;
+}
+/* 화살표를 카드(1000px) 바깥으로 튀어나오게 */
+.projects-swiper .swiper-button-prev {
+    left: -64px;
+}
+.projects-swiper .swiper-button-next {
+    right: -64px;
 }
 
-/* 모바일: 고정 인디케이터 숨김 (공간 부족) */
-@media (max-width: 1024px) {
-    .nav-indicator {
-        display: none;
-    }
+.projects-swiper .swiper-pagination {
+    bottom: 20px;
+}
+.projects-swiper .swiper-pagination-bullet {
+    background: var(--camel);
+    opacity: 0.4;
+    width: 9px;
+    height: 9px;
+    transition: 0.3s;
+}
+.projects-swiper .swiper-pagination-bullet-active {
+    background: var(--coffee);
+    opacity: 1;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* 슬라이드 자체는 패딩 없음 (화살표는 래퍼 패딩 영역에 있음) */
+.projects-swiper .swiper {
+    padding: 0;
+    overflow: hidden;
 }

@@ -5,10 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LEE JI YEON — Portfolio</title>
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+        <!-- 폰트 (Pretendard) -->
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
             rel="stylesheet"
         />
+        <!-- Swiper (프로젝트 슬라이드) -->
+        <link rel="stylesheet" href="lib/swiper-bundle.min.css" />
+        <script src="lib/swiper-bundle.min.js" defer></script>
         <!-- ↓ CSS 파일 연결. css 폴더에 넣었으면 href="css/style.css" 로 바꾸기 -->
         <link rel="stylesheet" href="css/style.css" />
         <script src="js/script.js"></script>
@@ -16,48 +23,104 @@
         <script src="js/projects-data.js"></script>
     </head>
     <body>
-        <!-- 고정 섹션 인디케이터 (스크롤 따라 라벨 교체 + 원 이동) -->
-        <div class="nav-indicator" id="navIndicator" aria-hidden="true">
-            <p class="ni-label" id="niLabel">ABOUT / VISION</p>
-            <div class="ni-dots">
-                <span class="ni-dot active" data-go="0"></span>
-                <span class="ni-dot" data-go="1"></span>
-                <span class="ni-dot" data-go="2"></span>
-                <span class="ni-dot" data-go="3"></span>
-                <span class="ni-dot" data-go="4"></span>
-            </div>
-        </div>
-
-        <!-- ===== 내비게이션 ===== -->
+        <!-- ===================================================== -->
+        <!-- 내비게이션                                            -->
+        <!-- ===================================================== -->
         <nav>
             <div class="wrap">
                 <div class="logo">PORTFOLIO</div>
                 <div class="menu">
-                    <a href="#about">About</a><a href="#skills">Skills</a> <a href="#projects">Projects</a
-                    ><a href="#contact">Contact</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
         </nav>
 
-        <!-- ===== 1. 메인 비주얼 ===== -->
+        <!-- ===================================================== -->
+        <!-- 01. 메인 비주얼 (HERO)                                -->
+        <!-- ===================================================== -->
         <header class="hero">
             <div class="wrap">
-                <p class="eyebrow">VISUAL DESIGNER / MOTION / UI/UX</p>
-                <h1>LEE<br />JI YEON</h1>
-                <p class="intro">브랜드와 이야기를 시각적으로 설계합니다</p>
-                <div class="btn-row">
-                    <a href="#projects" class="btn">View Projects ↗</a>
-                    <a href="#contact" class="btn">Contact</a>
+                <div class="hero-grid">
+                    <!-- 왼쪽: 텍스트 -->
+                    <div class="hero-text">
+                        <p class="eyebrow">VISUAL DESIGNER · MOTION · UI/UX</p>
+                        <h1>LEE<br />JI YEON</h1>
+                        <p class="intro">브랜드와 이야기를 시각적으로 설계합니다</p>
+                        <div class="btn-row">
+                            <a href="#projects" class="btn">View Projects ↗</a>
+                            <a href="#contact" class="btn">Contact</a>
+                        </div>
+                    </div>
+                    <!-- 오른쪽: 떠다니는 오브젝트 무대 -->
+                    <div class="hero-stage">
+                        <!-- 궤도선 (오브젝트 주위를 도는 선) -->
+                        <svg class="orbit-line" viewBox="0 0 500 500" aria-hidden="true">
+                            <ellipse
+                                cx="250"
+                                cy="250"
+                                rx="230"
+                                ry="200"
+                                fill="none"
+                                stroke="var(--line)"
+                                stroke-width="1"
+                                transform="rotate(-18 250 250)"
+                            />
+                        </svg>
+
+                        <!-- 오브젝트들 (각각 그림자 + 이미지) -->
+                        <div class="obj obj-phone">
+                            <img src="images/hero/obj-papago.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-translation">
+                            <img src="images/hero/obj-translation.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-vegebox">
+                            <img src="images/hero/obj-vegebox.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-forest">
+                            <img src="images/hero/obj-forest.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-bluesphere">
+                            <img src="images/hero/obj-bluesphere.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-ginkgo">
+                            <img src="images/hero/obj-ginkgo.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                        <div class="obj obj-glass">
+                            <img src="images/hero/obj-glasssphere.png" alt="" />
+                            <span class="obj-shadow"></span>
+                        </div>
+                    </div>
                 </div>
-                <p class="scroll">SCROLL ↓</p>
+                <p class="scroll">SCROLL</p>
             </div>
         </header>
 
-        <!-- ===== 2. ABOUT ===== -->
+        <!-- ===================================================== -->
+        <!-- 02. ABOUT                                             -->
+        <!-- ===================================================== -->
         <section id="about" class="about" data-label="ABOUT / VISION">
             <div class="wrap">
+                <div class="sec-head">
+                    <p class="sec-label">ABOUT / VISION</p>
+                    <div class="sec-dots">
+                        <span class="sec-dot active" data-go="0"></span><span class="sec-dot" data-go="1"></span
+                        ><span class="sec-dot" data-go="2"></span><span class="sec-dot" data-go="3"></span
+                        ><span class="sec-dot" data-go="4"></span>
+                    </div>
+                </div>
                 <div class="about-grid">
-                    <div>
+                    <!-- 왼쪽: 텍스트 -->
+                    <div class="about-text">
                         <h2>과정과 의도, 브랜드의 가치를<br />시각적으로 증명하는 포트폴리오</h2>
                         <p>
                             결과물만 나열하지 않습니다. 배경, 문제 정의, 디자인 과정, 그리고 결과까지 하나의 흐름으로
@@ -65,21 +128,35 @@
                         </p>
                         <p>정보를 정리하고 분위기를 설계해 브랜드와 사용자를 시각적으로 연결합니다.</p>
                         <div class="tags">
-                            <span class="tag">Visual Storytelling</span><span class="tag">Motion Graphic</span>
-                            <span class="tag">UI Structure</span><span class="tag">Brand Mood</span>
+                            <span class="tag">Visual Storytelling</span>
+                            <span class="tag">Motion Graphic</span>
+                            <span class="tag">UI Structure</span>
+                            <span class="tag">Brand Mood</span>
                             <span class="tag">Detail &amp; Rhythm</span>
                         </div>
                     </div>
+                    <!-- 오른쪽: 이미지 -->
                     <div class="about-img"></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== 3. SKILLS ===== -->
+        <!-- ===================================================== -->
+        <!-- 03. SKILLS                                            -->
+        <!-- ===================================================== -->
         <section id="skills" data-label="SKILLS / TOOLS">
             <div class="wrap">
+                <div class="sec-head">
+                    <p class="sec-label">SKILLS / TOOLS</p>
+                    <div class="sec-dots">
+                        <span class="sec-dot" data-go="0"></span><span class="sec-dot active" data-go="1"></span
+                        ><span class="sec-dot" data-go="2"></span><span class="sec-dot" data-go="3"></span
+                        ><span class="sec-dot" data-go="4"></span>
+                    </div>
+                </div>
                 <div class="skills-grid">
-                    <div>
+                    <!-- 왼쪽: 핵심 역량 -->
+                    <div class="skills-core">
                         <p class="tools-title">CORE CAPABILITIES</p>
                         <div class="skill-item">
                             <h3>Graphic Design</h3>
@@ -94,28 +171,41 @@
                             <span>화면 구조와 사용자 흐름 설계</span>
                         </div>
                     </div>
-                    <div>
+                    <!-- 오른쪽: 툴 아이콘 -->
+                    <div class="skills-tools">
                         <p class="tools-title">TOOLS</p>
                         <div class="tools">
-                            <div class="tool"><img src="images/icon/tool-pr.png" alt="Premiere Pro" /></div>
-                            <div class="tool"><img src="images/icon/tool-ae.png" alt="After Effects" /></div>
-                            <div class="tool"><img src="images/icon/tool-ai.png" alt="Illustrator" /></div>
-                            <div class="tool"><img src="images/icon/tool-figma.png" alt="Figma" /></div>
-                            <div class="tool"><img src="images/icon/tool-ps.png" alt="Photoshop" /></div>
-                            <div class="tool"><img src="images/icon/tool-js.png" alt="JavaScript" /></div>
-                            <div class="tool"><img src="images/icon/tool-html.png" alt="HTML" /></div>
-                            <div class="tool"><img src="images/icon/tool-css.png" alt="CSS" /></div>
-                            <div class="tool"><img src="images/icon/tool-blender.png" alt="Blender" /></div>
+                            <div class="tool"><img src="images/tool-pr.png" alt="Premiere Pro" /></div>
+                            <div class="tool"><img src="images/tool-ae.png" alt="After Effects" /></div>
+                            <div class="tool"><img src="images/tool-ai.png" alt="Illustrator" /></div>
+                            <div class="tool"><img src="images/tool-figma.png" alt="Figma" /></div>
+                            <div class="tool"><img src="images/tool-ps.png" alt="Photoshop" /></div>
+                            <div class="tool"><img src="images/tool-js.png" alt="JavaScript" /></div>
+                            <div class="tool"><img src="images/tool-html.png" alt="HTML" /></div>
+                            <div class="tool"><img src="images/tool-css.png" alt="CSS" /></div>
+                            <div class="tool"><img src="images/tool-blender.png" alt="Blender" /></div>
+                            <div class="tool"><img src="images/tool-github.png" alt="GitHub" /></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== STORYTELLING STRUCTURE ===== -->
+        <!-- ===================================================== -->
+        <!-- 04. STORYTELLING STRUCTURE (5단계 흐름)               -->
+        <!-- ===================================================== -->
         <section id="story" class="story" data-label="STORYTELLING STRUCTURE">
             <div class="wrap">
+                <div class="sec-head">
+                    <p class="sec-label">STORYTELLING STRUCTURE</p>
+                    <div class="sec-dots">
+                        <span class="sec-dot" data-go="0"></span><span class="sec-dot" data-go="1"></span
+                        ><span class="sec-dot active" data-go="2"></span><span class="sec-dot" data-go="3"></span
+                        ><span class="sec-dot" data-go="4"></span>
+                    </div>
+                </div>
                 <div class="story-steps">
+                    <!-- 01 상황 -->
                     <div class="story-card">
                         <div class="story-icon">
                             <svg viewBox="0 0 48 48" class="line-ico">
@@ -128,6 +218,7 @@
                     </div>
                     <span class="story-arrow">→</span>
 
+                    <!-- 02 문제 -->
                     <div class="story-card">
                         <div class="story-icon">
                             <svg viewBox="0 0 48 48" class="line-ico">
@@ -141,6 +232,7 @@
                     </div>
                     <span class="story-arrow">→</span>
 
+                    <!-- 03 과정 -->
                     <div class="story-card">
                         <div class="story-icon">
                             <svg viewBox="0 0 48 48" class="line-ico">
@@ -156,6 +248,7 @@
                     </div>
                     <span class="story-arrow">→</span>
 
+                    <!-- 04 결과 -->
                     <div class="story-card">
                         <div class="story-icon">
                             <svg viewBox="0 0 48 48" class="line-ico">
@@ -168,6 +261,7 @@
                     </div>
                     <span class="story-arrow">→</span>
 
+                    <!-- 05 배운 점 -->
                     <div class="story-card">
                         <div class="story-icon">
                             <svg viewBox="0 0 48 48" class="line-ico">
@@ -182,158 +276,223 @@
             </div>
         </section>
 
-        <!-- ===== 4. PROJECTS (3D 호버 카드) ===== -->
+        <!-- ===================================================== -->
+        <!-- 05. PROJECTS (3D 호버 카드)                           -->
+        <!-- ===================================================== -->
         <section id="projects" class="projects" data-label="PROJECTS / SELECTED WORKS">
             <div class="wrap">
-                <h2>WORK</h2>
-                <div class="cards">
-                    <!-- 카드 1 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>01</span></span>
+                <div class="sec-head">
+                    <p class="sec-label">PROJECTS / SELECTED WORKS</p>
+                    <div class="sec-dots">
+                        <span class="sec-dot" data-go="0"></span><span class="sec-dot" data-go="1"></span
+                        ><span class="sec-dot" data-go="2"></span><span class="sec-dot active" data-go="3"></span
+                        ><span class="sec-dot" data-go="4"></span>
+                    </div>
+                </div>
+                <div class="projects-swiper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>01</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 01</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=01" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 01</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>02</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 02</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=02" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=01" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>03</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 03</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=03" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>04</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 04</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=04" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>05</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 05</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=05" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="ux-parent" role="button" tabindex="0">
+                                    <div class="ux-card">
+                                        <div class="ux-glass"></div>
+                                        <div
+                                            class="ux-img"
+                                            style="
+                                                background-image: url(&quot;https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop&quot;);
+                                            "
+                                        ></div>
+                                        <div class="ux-logo">
+                                            <span class="ux-circle"><span>06</span></span>
+                                        </div>
+                                        <div class="ux-content">
+                                            <p class="ux-num">PROJECT 06</p>
+                                            <span class="ux-title">Project Title</span>
+                                            <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
+                                        </div>
+                                        <div class="ux-bottom">
+                                            <div class="ux-cat"><span class="ux-chip">Category</span></div>
+                                            <a href="project.html?id=06" class="ux-open"
+                                                >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- 카드 2 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>02</span></span>
-                            </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 02</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
-                            </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=02" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 카드 3 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>03</span></span>
-                            </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 03</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
-                            </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=03" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 카드 4 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>04</span></span>
-                            </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 04</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
-                            </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=04" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 카드 05 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>05</span></span>
-                            </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 05</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
-                            </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=05" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 카드 06 -->
-                    <div class="ux-parent" role="button" tabindex="0">
-                        <div class="ux-card">
-                            <div class="ux-glass"></div>
-                            <div class="ux-logo">
-                                <span class="ux-circle"></span>
-                                <span class="ux-circle"><span>06</span></span>
-                            </div>
-                            <div class="ux-content">
-                                <p class="ux-num">PROJECT 06</p>
-                                <span class="ux-title">Project Title</span>
-                                <span class="ux-text">한 줄 설명이 들어가는 자리입니다.</span>
-                            </div>
-                            <div class="ux-bottom">
-                                <div class="ux-cat"><span class="ux-chip">Category</span></div>
-                                <a href="project.html?id=06" class="ux-open"
-                                    >OPEN<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 화살표 (카드 바깥) -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <!-- 페이지 표시 -->
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== 5. CONTACT ===== -->
+        <!-- ===================================================== -->
+        <!-- 06. CONTACT                                           -->
+        <!-- ===================================================== -->
         <section id="contact" class="contact" data-label="CONTACT">
             <div class="wrap">
+                <div class="sec-head">
+                    <p class="sec-label">CONTACT</p>
+                    <div class="sec-dots">
+                        <span class="sec-dot" data-go="0"></span><span class="sec-dot" data-go="1"></span
+                        ><span class="sec-dot" data-go="2"></span><span class="sec-dot" data-go="3"></span
+                        ><span class="sec-dot active" data-go="4"></span>
+                    </div>
+                </div>
                 <h2>함께 만들 다음 프로젝트를<br />기다리고 있습니다</h2>
                 <a href="mailto:your.email@gmail.com" class="email">your.email@gmail.com ↗</a>
-                <div class="sns"><a href="#">Behance</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+                <div class="sns">
+                    <a href="#">Behance</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
             </div>
         </section>
 
-        <footer><div class="wrap">© 2026 LEE JI YEON</div></footer>
-
-        <!-- ↓ JS 파일 연결. js 폴더에 넣었으면 src="js/script.js" 로 바꾸기 -->
-        <script src="script.js"></script>
+        <!-- ===================================================== -->
+        <!-- 푸터                                                  -->
+        <!-- ===================================================== -->
+        <footer>
+            <div class="wrap">© 2026 LEE JI YEON</div>
+        </footer>
     </body>
 </html>
