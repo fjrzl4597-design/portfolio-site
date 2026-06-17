@@ -31,69 +31,82 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     });
 })();
 
-// ===== 고정 섹션 인디케이터 (라벨 페이드 교체 + 원 부드럽게 이동) =====
+// ===== 섹션 인디케이터 (sticky, 스크롤 따라 원 동기화 + 클릭 이동) =====
 (function () {
-    var indicator = document.getElementById("navIndicator");
-    if (!indicator) return;
-    var labelEl = document.getElementById("niLabel");
-    var dots = indicator.querySelectorAll(".ni-dot");
-
     var sectionIds = ["about", "skills", "story", "projects", "contact"];
     var sections = sectionIds.map(function (id) {
         return document.getElementById(id);
     });
-    var labels = sections.map(function (s) {
-        return s ? s.getAttribute("data-label") : "";
-    });
+    var allDotGroups = document.querySelectorAll(".sec-dots");
 
-    var current = -1;
-
+    // 모든 섹션의 원을 현재 인덱스에 맞춰 동기화
     function setActive(index) {
-        if (index === current) return; // 같은 섹션이면 아무것도 안 함
-        current = index;
-
-        // 원 이동 (CSS transition으로 부드럽게)
-        dots.forEach(function (d, i) {
-            d.classList.toggle("active", i === index);
+        allDotGroups.forEach(function (group) {
+            group.querySelectorAll(".sec-dot").forEach(function (dot, i) {
+                dot.classList.toggle("active", i === index);
+            });
         });
-
-        // 라벨 페이드 교체
-        if (labelEl.textContent !== labels[index]) {
-            labelEl.style.opacity = "0";
-            setTimeout(function () {
-                labelEl.textContent = labels[index];
-                labelEl.style.opacity = "1";
-            }, 200);
-        }
     }
 
     // 원 클릭 → 해당 섹션으로 스크롤
-    dots.forEach(function (dot) {
-        dot.addEventListener("click", function () {
-            var i = parseInt(dot.getAttribute("data-go"), 10);
-            if (sections[i]) sections[i].scrollIntoView({ behavior: "smooth" });
+    allDotGroups.forEach(function (group) {
+        group.querySelectorAll(".sec-dot").forEach(function (dot) {
+            dot.addEventListener("click", function () {
+                var i = parseInt(dot.getAttribute("data-go"), 10);
+                if (sections[i]) sections[i].scrollIntoView({ behavior: "smooth" });
+            });
         });
     });
 
-    // 스크롤 위치로 현재 섹션 판별 (화면 40% 지점 기준)
+    // 스크롤 위치로 현재 섹션 판별
     function onScroll() {
         var mid = window.scrollY + window.innerHeight * 0.4;
         var idx = 0;
         sections.forEach(function (sec, i) {
             if (sec && sec.offsetTop <= mid) idx = i;
         });
-
-        // hero(맨 위)에선 인디케이터 숨김, about부터 나타남
-        if (window.scrollY < (sections[0] ? sections[0].offsetTop - window.innerHeight * 0.5 : 0)) {
-            indicator.style.opacity = "0";
-        } else {
-            indicator.style.opacity = "1";
-        }
-
         setActive(idx);
     }
 
-    indicator.style.transition = "opacity .4s ease";
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+})();
+
+// ===== 프로젝트 Swiper 슬라이드 =====
+(function () {
+    function initSwiper() {
+        if (typeof Swiper === "undefined") {
+            setTimeout(initSwiper, 100);
+            return;
+        }
+        var wrap = document.querySelector(".projects-swiper");
+        var el = wrap ? wrap.querySelector(".swiper") : null;
+        if (!el) return;
+        new Swiper(el, {
+            slidesPerView: 1,
+            spaceBetween: 24,
+            slidesPerGroup: 1,
+            centeredSlides: false,
+            loop: false,
+            grabCursor: true,
+            watchOverflow: true,
+            observer: true,
+            observeParents: true,
+            navigation: {
+                nextEl: wrap.querySelector(".swiper-button-next"),
+                prevEl: wrap.querySelector(".swiper-button-prev"),
+            },
+            pagination: {
+                el: wrap.querySelector(".swiper-pagination"),
+                clickable: true,
+            },
+            breakpoints: {
+                700: { slidesPerView: 1.5, spaceBetween: 24 },
+                900: { slidesPerView: 2, spaceBetween: 28 },
+            },
+        });
+    }
+    // Swiper 번들이 로드될 때까지 확실히 대기
+    window.addEventListener("load", initSwiper);
+    if (document.readyState === "complete") initSwiper();
 })();

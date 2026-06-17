@@ -1,3 +1,13 @@
+/* 페이지 부드러운 스크롤 (앵커 이동) */
+html {
+    scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 /* ===== 공통 토큰 (Golden Oat Latte 팔레트) ===== */
 :root {
     /* 팔레트 */
@@ -158,13 +168,25 @@ nav .wrap {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 24px;
+    padding: 11px 22px; /* 패딩 얇게 */
     border: 1px solid var(--ink);
     border-radius: 40px;
     font-size: 15px;
     color: var(--ink);
     transition: 0.25s;
 }
+/* View Projects: 진한 갈색 배경 + 흰 글자로 강조 (기본 버튼) */
+.btn-primary {
+    background: var(--coffee);
+    border-color: var(--coffee);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background: var(--brown);
+    border-color: var(--brown);
+    color: var(--white);
+}
+/* Contact: 테두리만 */
 .btn:hover {
     background: var(--ink);
     color: var(--cream);
@@ -174,24 +196,33 @@ nav .wrap {
 .hero-stage {
     position: relative;
     width: 100%;
-    height: 560px;
+    height: 600px;
 }
 
 /* 궤도선 */
 .orbit-line {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    animation: orbit-rotate 60s linear infinite;
+    /* 오브젝트 그룹을 감싸도록 stage보다 크게, 중앙 정렬 */
+    width: 122%;
+    height: 122%;
+    left: 53%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     transform-origin: center;
+    z-index: 0; /* 뒤 겹: 오브젝트 뒤 */
+    overflow: visible;
+    animation: orbit-drift 14s ease-in-out infinite;
+    pointer-events: none;
 }
-@keyframes orbit-rotate {
-    from {
-        transform: rotate(0);
+
+/* 궤도선이 천천히 호흡하듯 미세하게 움직임 (빙글 회전 X) */
+@keyframes orbit-drift {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
     }
-    to {
-        transform: rotate(360deg);
+    50% {
+        transform: translate(-50%, -50%) rotate(1.5deg) scale(1.015);
     }
 }
 
@@ -208,52 +239,51 @@ nav .wrap {
 }
 /* 그림자: 오브젝트 아래 바닥에 (고정, 스케일·투명도만 변함) */
 .obj-shadow {
-    position: absolute;
-    left: 50%;
-    bottom: -18px;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 14px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(76, 58, 36, 0.28), transparent 70%);
-    z-index: 1;
+    display: none; /* 개별 그림자 제거 — 통합 그림자(.hero-stage::after) 사용 */
 }
 
 /* 각 오브젝트 위치·크기 (1번 레퍼런스 배치) — img만 둥둥 */
 .obj-phone {
-    width: 200px;
-    top: 24%;
-    left: 34%;
+    width: 134px;
+    top: 30%;
+    left: 20%;
+    z-index: 5;
 }
 .obj-translation {
-    width: 92px;
-    top: 8%;
-    left: 60%;
+    width: 56px;
+    top: 16%;
+    left: 40%;
+    z-index: 6;
 }
 .obj-vegebox {
-    width: 150px;
-    top: 40%;
-    right: 2%;
+    width: 195px;
+    top: 30%;
+    right: -26%;
+    z-index: 7;
 }
 .obj-forest {
-    width: 120px;
-    top: 54%;
-    left: 40%;
+    width: 156px;
+    top: 40%;
+    left: 48%;
+    z-index: 5;
 }
 .obj-bluesphere {
-    width: 120px;
+    width: 84px;
     top: 42%;
-    left: 8%;
+    left: 4%;
+    z-index: 3;
 }
 .obj-ginkgo {
-    width: 110px;
-    top: 14%;
-    right: 8%;
+    width: 95px;
+    top: 46%;
+    left: 45%;
+    z-index: 7;
 }
 .obj-glass {
-    width: 64px;
-    top: 30%;
-    right: 18%;
+    width: 38px;
+    top: 44%;
+    left: 50%;
+    z-index: 8;
 }
 
 .obj-phone img {
@@ -278,32 +308,32 @@ nav .wrap {
     animation: float-b 4.5s ease-in-out infinite;
 }
 
-/* 둥둥 뜨는 애니메이션 3종 (랜덤 느낌) */
+/* 둥둥 뜨는 애니메이션 3종 (상하 + 좌우 + 미세 회전으로 더 자연스럽게) */
 @keyframes float-a {
     0%,
     100% {
-        transform: translateY(0);
+        transform: translate(0, 0) rotate(0deg);
     }
     50% {
-        transform: translateY(-16px);
+        transform: translate(4px, -18px) rotate(1.5deg);
     }
 }
 @keyframes float-b {
     0%,
     100% {
-        transform: translateY(0);
+        transform: translate(0, 0) rotate(0deg);
     }
     50% {
-        transform: translateY(-12px);
+        transform: translate(-5px, -14px) rotate(-2deg);
     }
 }
 @keyframes float-c {
     0%,
     100% {
-        transform: translateY(0);
+        transform: translate(0, 0) rotate(0deg);
     }
     50% {
-        transform: translateY(-20px);
+        transform: translate(3px, -22px) rotate(1deg);
     }
 }
 /* 그림자: 오브젝트가 뜨면(중간) 옅고 작게, 내려오면 짙고 크게 */
@@ -328,6 +358,30 @@ nav .wrap {
 .obj-glass .obj-shadow {
     animation: shadow-b 4.5s ease-in-out infinite;
 }
+
+/* 그림자를 모두 같은 바닥 높이로 정렬 */
+.obj-phone .obj-shadow {
+    bottom: -107px;
+}
+.obj-translation .obj-shadow {
+    bottom: -366px;
+}
+.obj-vegebox .obj-shadow {
+    bottom: -82px;
+}
+.obj-forest .obj-shadow {
+    bottom: -85px;
+}
+.obj-bluesphere .obj-shadow {
+    bottom: -183px;
+}
+.obj-ginkgo .obj-shadow {
+    bottom: -131px;
+}
+.obj-glass .obj-shadow {
+    bottom: -218px;
+}
+
 @keyframes shadow-a {
     0%,
     100% {
@@ -364,8 +418,8 @@ nav .wrap {
 
 /* SCROLL: 위에 짧은 선 + 글자, 중앙 정렬 */
 .scroll {
-    margin: 40px auto 0;
-    font-size: var(--fs-note);
+    margin: 16px auto 40px;
+    font-size: 14px;
     letter-spacing: 0.1em;
     color: var(--note);
     width: fit-content;
@@ -379,7 +433,8 @@ nav .wrap {
     content: "";
     width: 1px;
     height: 20px;
-    background: var(--note);
+    background: var(--line); /* 더 연한 선 색 */
+    opacity: 0.7;
     display: block;
 }
 
@@ -397,7 +452,7 @@ nav .wrap {
     margin-bottom: 32px;
     color: var(--ink);
 }
-.about p {
+.about p:not(.sec-label) {
     font-size: var(--fs-body);
     color: var(--sub);
     margin-bottom: 20px;
@@ -1060,10 +1115,10 @@ footer {
     margin-bottom: 48px;
 }
 .sec-label {
-    font-size: var(--fs-note);
+    font-size: 18px; /* 모든 섹션 소제목 사이즈 통일 */
     letter-spacing: 0.1em;
-    color: var(--note);
-    margin-bottom: 14px;
+    color: var(--sub); /* 모든 섹션 소제목 색 통일 (#7c6041) */
+    margin-bottom: 20px;
     transition: opacity 0.4s ease;
     white-space: nowrap;
 }
