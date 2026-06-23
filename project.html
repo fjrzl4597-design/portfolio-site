@@ -37,14 +37,46 @@
                 </header>
                 <!-- 영상 -->
                 <div class="detail-video" data-video-wrap>
-                    <iframe
-                        data-field="video"
-                        src=""
-                        title="project video"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                    ></iframe>
+                    <div
+                        style="
+                            position: absolute;
+                            inset: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: linear-gradient(135deg, #4c3a24, #7c6041);
+                            color: #fff;
+                            border-radius: inherit;
+                            flex-direction: column;
+                            gap: 12px;
+                        "
+                    >
+                        <div
+                            style="
+                                width: 64px;
+                                height: 64px;
+                                border-radius: 50%;
+                                background: rgba(255, 255, 255, 0.2);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            <div
+                                style="
+                                    width: 0;
+                                    height: 0;
+                                    border-left: 20px solid #fff;
+                                    border-top: 13px solid transparent;
+                                    border-bottom: 13px solid transparent;
+                                    margin-left: 5px;
+                                "
+                            ></div>
+                        </div>
+                        <span style="font-size: 14px; opacity: 0.85"
+                            >▶ 영상 재생 영역 (실제 사이트에선 YouTube 영상 표시)</span
+                        >
+                    </div>
                 </div>
                 <!-- Overview: 역할 / 툴 / 기간 -->
                 <section class="detail-overview">
