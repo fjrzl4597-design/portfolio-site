@@ -8,16 +8,33 @@ html {
     }
 }
 @font-face {
-    font-family: "YUniverse";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2") format("woff2");
+    font-family: "Paperozi";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2") format("woff2");
     font-weight: 300;
     font-display: swap;
 }
 @font-face {
-    font-family: "BnviitLasik";
+    font-family: "Paperozi";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Paperozi";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: "JoseonGulim";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff") format("woff");
     font-weight: normal;
-    font-style: normal;
-    src: url("css/fonts/BnviitLasikOTF.woff") format("woff");
+    font-display: swap;
+}
+@font-face {
+    font-family: "YUniverse";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_yuniverse@1.0/YUniverse-B.woff2") format("woff2");
+    font-weight: 300;
     font-display: swap;
 }
 /* ===== 공통 토큰 (Golden Oat Latte 팔레트) ===== */
@@ -158,7 +175,7 @@ nav .wrap {
     margin-bottom: 24px;
 }
 .hero h1 {
-    font-family: "BnviitLasik";
+    font-family: "Paperozi";
     font-size: clamp(56px, 11vw, 100px);
     font-weight: 800;
     line-height: 0.95;
@@ -166,13 +183,14 @@ nav .wrap {
     color: var(--ink);
 }
 .hero .intro {
-    font-family: "YUniverse";
+    font-family: "JoseonGulim";
     font-size: var(--fs-body);
     color: var(--sub);
     margin: 32px 0 48px;
     font-weight: 560;
 }
 .btn-row {
+    font-family: "Paperozi";
     display: flex;
     gap: 16px;
 }
@@ -448,13 +466,18 @@ nav .wrap {
     gap: 64px;
     align-items: center;
 }
+.about-text h2 {
+    font-family: "Paperozi";
+}
 .about h2 {
-    font-family: "BnviitLasik";
     font-size: var(--fs-title);
     font-weight: 700;
     line-height: 1.35;
     margin-bottom: 32px;
     color: var(--ink);
+}
+.about p {
+    font-family: "JoseonGulim";
 }
 .about p:not(.sec-label) {
     font-size: var(--fs-body);
@@ -505,13 +528,14 @@ nav .wrap {
     border-bottom: 1px solid var(--line);
 }
 .skill-item h3 {
-    font-family: "BnviitLasik";
+    font-family: "Paperozi";
     font-size: var(--fs-sub);
     font-weight: 700;
     color: var(--sub);
     white-space: nowrap;
 } /* 제목 항상 한 줄 */
 .skill-item span {
+    font-family: "JoseonGulim";
     font-size: var(--fs-note);
     color: var(--note);
     text-align: right;
@@ -569,6 +593,7 @@ nav .wrap {
     perspective-origin: 50% 50%;
     height: 300px;
     width: 100%;
+    margin: 0 auto;
 }
 
 /* 기울어지는 카드 본체 */
@@ -588,10 +613,10 @@ nav .wrap {
 .ux-img {
     position: absolute;
     inset: 0px;
-    border-radius: 28px;
+    border-radius: 30px;
     background-size: cover;
     background-position: center;
-    transform: translate3d(0, 0, 26px); /* 유리판 바로 위 */
+    transform: none;
     pointer-events: none;
     z-index: 1;
     /* 왼쪽은 투명 → 오른쪽으로 갈수록 불투명 (텍스트 영역과 자연스럽게 섞임) */
@@ -641,13 +666,14 @@ nav .wrap {
 }
 .ux-title {
     display: block;
-    font-family: "BnviitLasik";
+    font-family: "Paperozi";
     font-size: 26px;
     font-weight: 800;
     margin: 8px 0 12px;
     color: #fff;
 }
 .ux-text {
+    font-family: "JoseonGulim";
     display: block;
     font-size: 15px;
     color: #fff;
@@ -699,14 +725,14 @@ nav .wrap {
 }
 /* ===== 06. CONTACT ===== */
 .contact h2 {
-    font-size: clamp(32px, 6vw, 56px);
+    font-size: clamp(32px, 6vw, 32px);
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 40px;
     color: var(--ink);
 }
 .email {
-    font-size: 24px;
+    font-size: 18px;
     display: inline-flex;
     gap: 8px;
     color: var(--ink);
@@ -912,23 +938,26 @@ footer {
     margin-bottom: 0;
 }
 .detail-head {
+    color: #2b2826;
     margin-bottom: 48px;
 }
 .detail-num {
     font-size: 13px;
     letter-spacing: 0.12em;
-    color: var(--sub);
+    color: #7D7B77;
     margin-bottom: 16px;
 }
 .detail-head h1 {
+    font-family: "Paperozi";
     font-size: clamp(36px, 6vw, 72px);
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.02em;
 }
 .detail-summary {
+    font-family: "JoseonGulim";
     font-size: 18px;
-    color: var(--sub);
+    color: #7D7B77;
     margin-top: 20px;
 }
 /* 영상 */
@@ -965,9 +994,10 @@ footer {
 .ov-label {
     font-size: 12px;
     letter-spacing: 0.1em;
-    color: var(--sub);
+    color: #2b2826;
 }
 .ov-item span:last-child {
+    color: #7D7B77;
     font-size: 15px;
     font-weight: 600;
 }
@@ -976,20 +1006,27 @@ footer {
     max-width: 760px;
     margin-bottom: 64px;
 }
+.detail-block h2 {
+    font-family: "Paperozi";
+}
+.detail-block p {
+    font-family: "JoseonGulim";
+}
 .block-label {
     font-size: 12px;
     letter-spacing: 0.12em;
-    color: var(--sub);
+    color: #2b2826;
     margin-bottom: 12px;
 }
 .detail-block h2 {
     font-size: clamp(22px, 3vw, 30px);
     font-weight: 700;
+    color: #2b2826;
     margin-bottom: 20px;
 }
 .detail-block p {
     font-size: 16px;
-    color: #555;
+    color: #7D7B77;
     line-height: 1.8;
 }
 /* 결과물 이미지 갤러리 */
@@ -1023,6 +1060,7 @@ footer {
     gap: 8px;
 }
 .story-card {
+    font-family: "JoseonGulim";
     flex: 1;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -1053,8 +1091,8 @@ footer {
     stroke-linejoin: round;
 }
 .story-card h3 {
-    font-family: "BnviitLasik";
-    font-size: 20px;
+    font-family: "Paperozi";
+    font-size: 16px;
     font-weight: 700;
     margin-bottom: 12px;
     color: var(--ink);
@@ -1085,6 +1123,15 @@ footer {
 .sec-head {
     position: static; /* 걸리는 효과 제거 — 그냥 제자리 */
     margin-bottom: 48px;
+}
+.sec-head .sec-label {
+    font-family: "YUniverse";
+}
+.sec-head h2 {
+    font-family: "Paperozi";
+}
+.sec-head a {
+    font-family: "JoseonGulim";
 }
 .sec-label {
     font-family: "YUniverse";

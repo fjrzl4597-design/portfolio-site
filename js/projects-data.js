@@ -36,7 +36,7 @@ const PROJECTS = {
         role: "기획 · 스토리보드 · 모션",
         tools: "After Effects, Illustrator, Premiere Pro",
         period: "2025.05 – 2025.06",
-        video: "ScMzIvxBSi4", // 더미 영상 ID. 실제 ID로 교체
+        video: "g5z0tUdVuiM", // 더미 영상 ID. 실제 ID로 교체
         summary: "사라지는 이름들을 숲의 이미지로 기억하는 감성 모션그래픽.",
 
         background:

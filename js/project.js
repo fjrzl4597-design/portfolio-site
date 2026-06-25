@@ -2,7 +2,7 @@
 (function () {
     // 1) URL에서 ?id=01 읽기 (없으면 01)
     var params = new URLSearchParams(window.location.search);
-    var id = "03"; // 미리보기 고정
+    var id = params.get("id") || "01";
     // 2) 데이터 가져오기 (없는 번호면 01로 폴백)
     var data = typeof PROJECTS !== "undefined" && PROJECTS[id] ? PROJECTS[id] : PROJECTS["01"];
     if (!data) return;
